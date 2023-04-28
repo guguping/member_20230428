@@ -1,0 +1,17 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.nav ul{
+    list-style-type: none;
+}
+li{
+    float: left;
+}
+li a{
+    color: black;
+    display: inline-block;
+    text-decoration: none;
+    padding: 20px;
+}
