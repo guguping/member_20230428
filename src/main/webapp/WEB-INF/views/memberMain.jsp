@@ -12,5 +12,14 @@
 </head>
 <body>
 <h2>memberMain</h2>
+<a href="#" onclick="Detail(${DTO.id})">회원 상세 페이지</a><br>
+<p>${DTO.memberName}님 환영합니다</p>
+<a href="/logout">logout</a>
+<%@include file="./component/footer.jsp"%>
 </body>
+<script>
+    const Detail = (id) =>{
+        location.href = "/memberDetail?id="+id;
+    }
+</script>
 </html>

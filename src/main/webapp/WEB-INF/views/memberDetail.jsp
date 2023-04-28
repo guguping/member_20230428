@@ -11,6 +11,31 @@
     <title>memberDetail</title>
 </head>
 <body>
-
+<h2>안녕 나는 상세페이지</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Name</th>
+        <th>Birth</th>
+        <th>Mobile</th>
+    </tr>
+    <tr>
+        <td>${detailList.id}</td>
+        <td>${detailList.memberEmail}</td>
+        <td>${detailList.memberPassword}</td>
+        <td>${detailList.memberName}</td>
+        <td>${detailList.memberBirth}</td>
+        <td>${detailList.memberMobile}</td>
+    </tr>
+</table>
+<a href="#" onclick="back(${detailList.id})">뒤로가기</a>
 </body>
+<%@include file="./component/footer.jsp"%>
+<script>
+    const back = (id) =>{
+        location.href = "/memberMain";
+    }
+</script>
 </html>

@@ -11,8 +11,11 @@
     <select id="list" resultType="member">
         select * from member_table
     </select>
-    <select id="login" parameterType="member" resultType="Integer">
+    <select id="login" parameterType="member" resultType="member">
         select * from member_table
                  where memberEmail=#{memberEmail} and memberPassword=#{memberPassword}
+    </select>
+    <select id="detailList" resultType="member" parameterType="Long">
+        select * from member_table where id=#{id}
     </select>
 </mapper>

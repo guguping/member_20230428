@@ -11,6 +11,7 @@ import java.util.List;
 public class MemberRepository {
     @Autowired
     private SqlSessionTemplate sql;
+
     public boolean save(MemberDTO memberDTO) {
         try {
             sql.insert("Member.save",memberDTO);
@@ -25,8 +26,11 @@ public class MemberRepository {
         return sql.selectList("Member.list");
     }
 
-    public Integer login(MemberDTO memberDTO) {
-            return sql.selectOne("Member.login",memberDTO);
+    public MemberDTO login(MemberDTO memberDTO) {
+        return sql.selectOne("Member.login",memberDTO);
+    }
 
+    public MemberDTO detailList(Long id) {
+        return sql.selectOne("Member.detailList",id);
     }
 }

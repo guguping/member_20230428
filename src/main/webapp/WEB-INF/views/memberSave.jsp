@@ -20,8 +20,14 @@
                 <td><input type="text" name="memberEmail" id="email"></td>
             </tr>
             <tr>
+                <p id="emailResult"></p>
+            </tr>
+            <tr>
                 <th><label for="password">비밀번호:</label></th>
-                <td><input type="text" name="memberPassword" id="password"></td>
+                <td><input type="text" name="memberPassword" id="password" onblur="passwordCheck()"></td>
+            </tr>
+            <tr>
+                <td><p id="passwordResult" style="display: block"></p></td>
             </tr>
             <tr>
                 <th><label for="name">이름:</label></th>
@@ -44,10 +50,59 @@
         </table>
     </form>
 </div>
+<%@include file="./component/footer.jsp"%>
 </body>
 <script>
-    const back = () =>{
+    const back = () => {
         location.href = "/";
+    }
+    const passwordCheck = () =>{
+        const memberPassword = document.getElementById('password');
+        const passwordResult = document.getElementById('passwordResult');
+        const exp = /^(?=.*[a-z])(?=.*\d)(?=.*[!#$%])[a-z\d!#$%]{8,16}$/;
+
+        if (!(memberPassword.value.match(exp))) {
+            passwordResult.innerHTML = "영문소문자, 숫자, 특수문자(!#$%) 하나 이상 입력하고 8~16자"
+            memberPassword.focus();
+            return false;
+        }else{
+            return true;
+        }
+    }
+    const SaveCheck = () => {
+        const memberEmail = document.getElementById('email');
+        const memberPassword = document.getElementById('password');
+        const memberName = document.getElementById('name');
+        const memberBirth = document.getElementById('birth');
+        const memberMobile = document.getElementById('mobile');
+        const exp = /^(?=.*[a-z])(?=.*\d)(?=.*[!#$%])[a-z\d!#$%]{8,16}$/;
+        if (memberEmail.value.length == 0) {
+            alert("아이디를 입력해주세요");
+            memberEmail.focus();
+            return false;
+        }else if (memberPassword.value.length==0) {
+            alert("비밀번호를 입력해주세요");
+            memberPassword.focus();
+            return false;
+        }else if(!(memberPassword.value.match(exp))){
+            alert("비밀번호 양식을 확인해주세요")
+            memberPassword.focus();
+            return false;
+        } else if (memberName.value.length == 0) {
+            alert("이름을 입력해주세요");
+            memberName.focus();
+            return false;
+        } else if (memberBirth.value.length == 0) {
+            alert("생일을 입력해주세요");
+            memberBirth.focus();
+            return false;
+        }  else if (memberMobile.value.length == 0) {
+            alert("전화번호를 입력해주세요");
+            memberMobile.focus();
+            return false;
+        } else {
+            return true;
+        }
     }
 </script>
 </html>

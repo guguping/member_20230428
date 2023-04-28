@@ -21,7 +21,11 @@ public class MemberService {
         return memberRepository.list();
     }
 
-    public Integer login(MemberDTO memberDTO) {
+    public MemberDTO login(MemberDTO memberDTO) {
         return memberRepository.login(memberDTO);
+    }
+
+    public MemberDTO detailList(Long id) {
+        return memberRepository.detailList(id);
     }
 }

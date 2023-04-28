@@ -12,5 +12,6 @@
 </head>
 <body>
 <h2>나는야 에러페이지</h2>
+<%@include file="./component/footer.jsp"%>
 </body>
 </html>

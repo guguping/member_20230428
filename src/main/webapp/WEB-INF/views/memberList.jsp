@@ -34,5 +34,6 @@
     </c:forEach>
 </table>
 <a href="/">뒤로가기</a>
+<%@include file="./component/footer.jsp"%>
 </body>
 </html>

@@ -33,10 +33,14 @@
         </form>
     </table>
 </div>
+<%@include file="./component/footer.jsp"%>
 </body>
 <script>
     const back = () =>{
         location.href="/";
+    }
+    const Logincheck = () =>{
+
     }
 </script>
 </html>
