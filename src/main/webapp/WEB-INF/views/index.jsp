@@ -13,26 +13,10 @@
     <link rel="stylesheet" href="/resources/css/style.css">
 </head>
 <body>
-<div class="header">
-<h2>응애 나 애기 index</h2>
-</div>
-<div class="nav">
-<ul>
-    <li><a href="/memberSave">회원가입</a></li>
-    <li><a href="/memberList">목록출력</a></li>
-    <li><a href="/memberMain">실험입니다</a></li>
-    <li class="login-name">
-        <c:choose>
-            <c:when test="${sessionScope.loginEmail != null}">
-                <a href="/memberMain" style="color: black;">${sessionScope.loginEmail}님환영해요</a>
-                <a href="/logout">logout</a>
-            </c:when>
-            <c:otherwise>
-                <a href="/memberLogin">login</a>
-            </c:otherwise>
-        </c:choose>
-    </li>
-</ul>
+<%@include file="./component/header.jsp"%>
+<%@include file="./component/nav.jsp"%>
+<div class="section" id="section">
+<h2>세션입니다</h2>
 </div>
 <%@include file="./component/footer.jsp"%>
 </body>

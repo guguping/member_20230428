@@ -10,30 +10,34 @@
 <html>
 <head>
     <title>memberList</title>
+    <link rel="stylesheet" href="/resources/css/style.css">
 </head>
 <body>
-<h2>응애 나 애기 list</h2>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Email</th>
-        <th>Password</th>
-        <th>Name</th>
-        <th>Birth</th>
-        <th>Mobile</th>
-    </tr>
-    <c:forEach items="${mList}" var="s">
+<%@include file="./component/header.jsp" %>
+<%@include file="./component/nav.jsp" %>
+<div id="section">
+    <table>
         <tr>
-            <td>${s.id}</td>
-            <td>${s.memberEmail}</td>
-            <td>${s.memberPassword}</td>
-            <td>${s.memberName}</td>
-            <td>${s.memberBirth}</td>
-            <td>${s.memberMobile}</td>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Name</th>
+            <th>Birth</th>
+            <th>Mobile</th>
         </tr>
-    </c:forEach>
-</table>
-<a href="/">뒤로가기</a>
-<%@include file="./component/footer.jsp"%>
+        <c:forEach items="${mList}" var="s">
+            <tr>
+                <td>${s.id}</td>
+                <td>${s.memberEmail}</td>
+                <td>${s.memberPassword}</td>
+                <td>${s.memberName}</td>
+                <td>${s.memberBirth}</td>
+                <td>${s.memberMobile}</td>
+            </tr>
+        </c:forEach>
+    </table>
+    <a href="/">뒤로가기</a>
+</div>
+<%@include file="./component/footer.jsp" %>
 </body>
 </html>

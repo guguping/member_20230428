@@ -6,20 +6,24 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>memberMain</title>
+    <link rel="stylesheet" href="/resources/css/style.css">
 </head>
 <body>
-<h2>memberMain</h2>
-<a href="#" onclick="Detail(${DTO.id})">회원 상세 페이지</a><br>
-<p>${DTO.memberName}님 환영합니다</p>
-<a href="/logout">logout</a>
-<%@include file="./component/footer.jsp"%>
+<%@include file="./component/header.jsp" %>
+<%@include file="./component/nav.jsp" %>
+<div id="section">
+    <h2>memberMain</h2>
+    <a href="#" onclick="Detail(${DTO.id})">회원 상세 페이지</a><br>
+</div>
+<%@include file="./component/footer.jsp" %>
 </body>
 <script>
-    const Detail = (id) =>{
-        location.href = "/memberDetail?id="+id;
+    const Detail = (id) => {
+        location.href = "/memberDetail?id=" + id;
     }
 </script>
 </html>

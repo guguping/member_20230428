@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="header" id="header">
+    <h2>멤버 관리 프로그램</h2>
+</div>
+<div class="nav" id="nav">
+    <ul>
+        <li><a href="/memberSave">회원가입</a></li>
+        <li><a href="/memberList">목록출력</a></li>
+        <li><a href="/memberMain">실험입니다</a></li>
+    </ul>
+</div>
+<div class="container" id="section">
+    <h2>세션입니다</h2>
+    <samp>왜안먹냐 123</samp>
+</div>
+<div class="footer" id="footer">
+
+</div>
+</body>
+<script>
+    const date = new Date();
+    console.log(date);
+    console.log(date.getFullYear());
+    const footer = document.getElementById('footer');
+    footer.innerHTML = "<p>&copy" + date.getFullYear() + "&nbsp;HRDKOREA All rights reserved."
+</script>
+</html>

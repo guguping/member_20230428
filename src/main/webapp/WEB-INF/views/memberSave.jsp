@@ -6,13 +6,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>memberSave</title>
+    <link rel="stylesheet" href="/resources/css/style.css">
 </head>
 <body>
+<%@include file="./component/header.jsp" %>
+<%@include file="./component/nav.jsp" %>
 <div class="section">
-    <h2>응애 나 애기 save</h2>
     <form action="/memberSave" method="post" onsubmit="return SaveCheck()">
         <table>
             <tr>
@@ -24,10 +27,8 @@
             </tr>
             <tr>
                 <th><label for="password">비밀번호:</label></th>
-                <td><input type="text" name="memberPassword" id="password" onblur="passwordCheck()"></td>
-            </tr>
-            <tr>
-                <td><p id="passwordResult" style="display: block"></p></td>
+                <td><input type="text" name="memberPassword" id="password" onblur="passwordCheck()">
+                <p id="passwordResult" style="display: block"></p></td>
             </tr>
             <tr>
                 <th><label for="name">이름:</label></th>
