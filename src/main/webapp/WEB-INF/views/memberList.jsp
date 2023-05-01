@@ -25,7 +25,6 @@
                 <th>Name</th>
                 <th>Birth</th>
                 <th>Mobile</th>
-                <th>삭제</th>
             </tr>
             <c:forEach items="${mList}" var="s">
                 <tr>
@@ -38,7 +37,14 @@
                 </tr>
             </c:forEach>
         </table>
-        <a href="/">뒤로가기</a>
+        <c:choose>
+            <c:when test="${DTO.memberEmail != null}">
+                <a href="/memberMain">뒤로가기</a>
+            </c:when>
+            <c:otherwise>
+                <a href="/">뒤로가기</a>
+            </c:otherwise>
+        </c:choose>
     </div>
 </div>
 <%@include file="./component/footer.jsp" %>

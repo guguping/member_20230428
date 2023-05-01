@@ -28,7 +28,7 @@
             <tr>
                 <th><label for="password">비밀번호:</label></th>
                 <td><input type="text" name="memberPassword" id="password" onblur="passwordCheck()">
-                <p id="passwordResult" style="display: block"></p></td>
+                    <p id="passwordResult" style="display: block"></p></td>
             </tr>
             <tr>
                 <th><label for="name">이름:</label></th>
@@ -45,19 +45,29 @@
             <tr>
                 <td colspan="2">
                     <input type="submit" style="display: inline" value="등록">
-                    <input type="button" style="display: inline" value="취소" onclick="back()">
+                    <c:choose>
+                        <c:when test="${DTO.memberEmail != null}">
+                            <input type="button" style="display: inline" value="취소" onclick="loginBack()">
+                        </c:when>
+                        <c:otherwise>
+                            <input type="button" style="display: inline" value="취소" onclick="back()">
+                        </c:otherwise>
+                    </c:choose>
                 </td>
             </tr>
         </table>
     </form>
 </div>
-<%@include file="./component/footer.jsp"%>
+<%@include file="./component/footer.jsp" %>
 </body>
 <script>
     const back = () => {
         location.href = "/";
     }
-    const passwordCheck = () =>{
+    const loginBack = ()=>{
+        location.href = "/memberMain";
+    }
+    const passwordCheck = () => {
         const memberPassword = document.getElementById('password');
         const passwordResult = document.getElementById('passwordResult');
         const exp = /^(?=.*[a-z])(?=.*\d)(?=.*[!#$%])[a-z\d!#$%]{8,16}$/;
@@ -66,7 +76,7 @@
             passwordResult.innerHTML = "영문소문자, 숫자, 특수문자(!#$%) 하나 이상 입력하고 8~16자"
             memberPassword.focus();
             return false;
-        }else{
+        } else {
             return true;
         }
     }
@@ -81,11 +91,11 @@
             alert("아이디를 입력해주세요");
             memberEmail.focus();
             return false;
-        }else if (memberPassword.value.length==0) {
+        } else if (memberPassword.value.length == 0) {
             alert("비밀번호를 입력해주세요");
             memberPassword.focus();
             return false;
-        }else if(!(memberPassword.value.match(exp))){
+        } else if (!(memberPassword.value.match(exp))) {
             alert("비밀번호 양식을 확인해주세요")
             memberPassword.focus();
             return false;
@@ -97,7 +107,7 @@
             alert("생일을 입력해주세요");
             memberBirth.focus();
             return false;
-        }  else if (memberMobile.value.length == 0) {
+        } else if (memberMobile.value.length == 0) {
             alert("전화번호를 입력해주세요");
             memberMobile.focus();
             return false;

@@ -39,9 +39,8 @@ public class MemberController {
         return "memberLogin";
     }
     @PostMapping("/memberLogin")
-    public String loginFaram(@ModelAttribute MemberDTO memberDTO , Model model , HttpSession session){
+    public String loginFaram(@ModelAttribute MemberDTO memberDTO , HttpSession session){
         MemberDTO saveResult = memberService.login(memberDTO);
-//        model.addAttribute("DTO",saveResult);
         session.setAttribute("DTO",saveResult);
         if(saveResult!=null) {
             return "memberMain";

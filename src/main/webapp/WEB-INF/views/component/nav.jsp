@@ -13,7 +13,7 @@
         <li class="login-name">
             <c:choose>
                 <c:when test="${DTO.memberEmail != null}">
-                    <a href="/memberMain" style="color: black;">${DTO.memberEmail}님환영해요</a>
+                    <a href="/memberMain" style="color: black;">${DTO.memberName}님환영해요</a>
                     <a href="/logout">logout</a>
                 </c:when>
                 <c:otherwise>

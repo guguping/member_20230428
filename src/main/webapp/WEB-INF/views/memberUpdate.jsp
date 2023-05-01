@@ -54,6 +54,9 @@
 <%@include file="./component/footer.jsp" %>
 </body>
 <script>
+    const back = () =>{
+        location.href = "/memberMain"
+    }
     const passwordCheck = () => {
         const memberPassword = document.getElementById('password');
         const passwordResult = document.getElementById('passwordResult');
