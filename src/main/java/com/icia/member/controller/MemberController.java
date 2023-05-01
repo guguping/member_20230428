@@ -14,19 +14,20 @@ import java.util.List;
 public class MemberController {
     @Autowired
     private MemberService memberService;
+
     @GetMapping("/memberSave")
     public String save() {
         return "memberSave";
     }
 
     @PostMapping("/memberSave")
-    public String saveFaram(@ModelAttribute MemberDTO memberDTO){
+    public String saveFaram(@ModelAttribute MemberDTO memberDTO) {
         System.out.println("memberDTO = " + memberDTO);
         boolean saveResult = memberService.save(memberDTO);
         System.out.println("saveResult = " + saveResult);
-        if(saveResult){
+        if (saveResult) {
             return "index";
-        }else{
+        } else {
             return "errorPage";
         }
     }
@@ -35,67 +36,73 @@ public class MemberController {
     public String login() {
         return "memberLogin";
     }
+
     @PostMapping("/memberLogin")
-    public String loginFaram(@ModelAttribute MemberDTO memberDTO , HttpSession session){
+    public String loginFaram(@ModelAttribute MemberDTO memberDTO, HttpSession session) {
         MemberDTO saveResult = memberService.login(memberDTO);
-        session.setAttribute("DTO",saveResult);
-        if(saveResult!=null) {
+        session.setAttribute("DTO", saveResult);
+        if (saveResult != null) {
             return "memberMain";
-        }else {
+        } else {
             return "memberLogin";
         }
     }
 
     @GetMapping("/memberList")
-    public String list(Model model){
+    public String list(Model model) {
         List<MemberDTO> mList = memberService.list();
-        model.addAttribute("mList",mList);
+        model.addAttribute("mList", mList);
         return "memberList";
     }
+
     @GetMapping("/memberDetail")
-    public String memberDetail(@RequestParam("id") Long id,HttpSession session){
+    public String memberDetail(@RequestParam("id") Long id, HttpSession session) {
         MemberDTO memberDTO = memberService.detailList(id);
-        session.setAttribute("detailList",memberDTO);
+        session.setAttribute("detailList", memberDTO);
         return "memberDetail";
     }
+
     @GetMapping("memberMain")
-    public String memberMain(){
+    public String memberMain() {
         return "memberMain";
     }
+
     @GetMapping("/logout")
-    public String logout(HttpSession session){
+    public String logout(HttpSession session) {
 //        세션에 담긴 값 전체 삭제
         session.invalidate();
 //        특정 파라미터만 삭제
 //        session.removeAttribute("loginEmail");
         return "redirect:/";
     }
+
     @GetMapping("/memberDelete")
-    public String memberDelete(@RequestParam("id") Long id , HttpSession session){
+    public String memberDelete(@RequestParam("id") Long id, HttpSession session) {
         memberService.memberDelete(id);
         session.invalidate();
         return "redirect:/";
     }
+
     @GetMapping("/memberUpdate")
-    public String memberUpdate(@RequestParam("id") Long id , HttpSession session){
+    public String memberUpdate(@RequestParam("id") Long id, HttpSession session) {
         MemberDTO memberDTO = memberService.detailList(id);
-        session.setAttribute("memberList",memberDTO);
+        session.setAttribute("memberList", memberDTO);
         return "/memberUpdate";
     }
+
     @PostMapping("/memberUpdate")
-    public String memberUpdate(@ModelAttribute MemberDTO memberDTO){
+    public String memberUpdate(@ModelAttribute MemberDTO memberDTO) {
         memberService.memberUpdate(memberDTO);
-        return "redirect:/memberDetail?id="+memberDTO.getId();
+        return "redirect:/memberDetail?id=" + memberDTO.getId();
     }
-    @GetMapping("/emailCheck")
-    public @ResponseBody String emailCheck(@RequestParam("saveEmail") String saveEmail){
-        System.out.println("saveEmail = " + saveEmail);
+
+    @GetMapping(value = "/emailCheck", produces = "application/text; charset=utf-8")
+    public @ResponseBody String emailCheck(@RequestParam("saveEmail") String saveEmail) {
         String dbEmail = memberService.emailCheck(saveEmail);
-        System.out.println("dbEmail = " + dbEmail);
-        if(saveEmail.equals(dbEmail)){
-            return "duplication id";
+        if (dbEmail != null) {
+            return "중복 아이디";
         }else {
-            return "good";
+            return "사용 가능";
         }
     }
 

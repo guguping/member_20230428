@@ -76,8 +76,7 @@
             "saveEmail":saveEmail.value
             },
             success: function (res) {
-                console.log("요청성공",res);
-                emailResult.innerHTML = res.value;
+                emailResult.innerHTML = res;
             },
             error: function () {
                 console.log("요청실패");
