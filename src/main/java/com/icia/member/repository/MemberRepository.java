@@ -33,4 +33,12 @@ public class MemberRepository {
     public MemberDTO detailList(Long id) {
         return sql.selectOne("Member.detailList",id);
     }
+
+    public void memberDelete(Long id) {
+        sql.delete("Member.delete",id);
+    }
+
+    public void memberUpdate(MemberDTO memberDTO) {
+        sql.update("Member.update",memberDTO);
+    }
 }

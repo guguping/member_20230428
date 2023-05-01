@@ -15,8 +15,8 @@
 <body>
 <%@include file="./component/header.jsp" %>
 <%@include file="./component/nav.jsp" %>
-<div class="section">
-    <form action="/memberSave" method="post" onsubmit="return SaveCheck()">
+<div id="section">
+    <form action="/memberSave" method="post" onsubmit="return SaveCheck()" id="contents">
         <table>
             <tr>
                 <th><label for="email">이메일:</label></th>

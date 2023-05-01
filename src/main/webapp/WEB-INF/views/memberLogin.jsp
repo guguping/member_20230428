@@ -15,33 +15,35 @@
 <body>
 <%@include file="./component/header.jsp" %>
 <%@include file="./component/nav.jsp" %>
-<div class="section">
-    <table>
-        <form action="/memberLogin" method="post" onsubmit="return Logincheck()">
-            <tr>
-                <th><label>이메일:</label></th>
-                <td><input type="text" name="memberEmail"></td>
-            </tr>
-            <tr>
-                <th><label>비밀번호:</label></th>
-                <td><input type="text" name="memberPassword"></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="submit" style="display:inline;"value="로그인">
-                    <input type="button" style="display:inline;"value="취소" onclick="back()">
-                </td>
-            </tr>
-        </form>
-    </table>
+<div class="section" id="section">
+    <div id="contents">
+        <table>
+            <form action="/memberLogin" method="post" onsubmit="return Logincheck()">
+                <tr>
+                    <th><label>이메일:</label></th>
+                    <td><input type="text" name="memberEmail"></td>
+                </tr>
+                <tr>
+                    <th><label>비밀번호:</label></th>
+                    <td><input type="text" name="memberPassword"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" style="display:inline;" value="로그인">
+                        <input type="button" style="display:inline;" value="취소" onclick="back()">
+                    </td>
+                </tr>
+            </form>
+        </table>
+    </div>
 </div>
-<%@include file="./component/footer.jsp"%>
+<%@include file="./component/footer.jsp" %>
 </body>
 <script>
-    const back = () =>{
-        location.href="/";
+    const back = () => {
+        location.href = "/";
     }
-    const Logincheck = () =>{
+    const Logincheck = () => {
 
     }
 </script>

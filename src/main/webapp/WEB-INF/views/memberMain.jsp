@@ -16,8 +16,10 @@
 <%@include file="./component/header.jsp" %>
 <%@include file="./component/nav.jsp" %>
 <div id="section">
+    <div id="contents">
     <h2>memberMain</h2>
-    <a href="#" onclick="Detail(${DTO.id})">회원 상세 페이지</a><br>
+    <a href="#" onclick="Detail(${DTO.id})">회원 상세 페이지</a>
+    </div>
 </div>
 <%@include file="./component/footer.jsp" %>
 </body>

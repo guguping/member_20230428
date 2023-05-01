@@ -17,4 +17,10 @@
         </li>
     </ul>
 </div>
-
+<%--<script>--%>
+<%--    const loginArea = document.getElementById("login-area");--%>
+<%--    const loginEmail= '${sessionScope.loginEmail}';--%>
+<%--    if(loginEmail.length != 0)--%>
+<%--        loginArea.innerHTML = "<a href='/mypage' style='color: black;'>"+loginEmail+"님 환영합니다</a>"--%>
+<%--        --%>
+<%--</script>--%>

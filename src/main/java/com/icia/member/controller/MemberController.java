@@ -74,5 +74,22 @@ public class MemberController {
 //        session.removeAttribute("loginEmail");
         return "redirect:/";
     }
+    @GetMapping("/memberDelete")
+    public String memberDelete(@RequestParam("id") Long id , HttpSession session){
+        memberService.memberDelete(id);
+        session.invalidate();
+        return "redirect:/";
+    }
+    @GetMapping("/memberUpdate")
+    public String memberUpdate(@RequestParam("id") Long id , HttpSession session){
+        MemberDTO memberDTO = memberService.detailList(id);
+        session.setAttribute("memberList",memberDTO);
+        return "/memberUpdate";
+    }
+    @PostMapping("/memberUpdate")
+    public String memberUpdate(@ModelAttribute MemberDTO memberDTO){
+        memberService.memberUpdate(memberDTO);
+        return "redirect:/memberDetail?id="+memberDTO.getId();
+    }
 
 }
