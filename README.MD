@@ -24,3 +24,10 @@ select * from member_table where memberEmail = 'GUPING@naver.com' and memberPass
 ### 비밀번호 제약조건 : 기존 비밀번호와 일치하면 수정<br>일치하지 않는다면 alert로 비밀번호 불일치 출력
 ### nav: 수정 로그인하면 상세페이지 보임
 ### CSS 약간 수정
+
+### ajax
+#### ajax -(Asynchronous Javascript and XML) -비동기식 화면
+#### 스크립트로도 가능하지만 제이쿼리로 사용하는게 더 편함
+
+(ajax01.jsp , ajaxcontroller , @ResponseBody , 03 버튼 = 파라미터 넘기기 data에 담아 보내야 한다)
+<br>(ajax05 - @ModelAttribute사용 , ajax06 - List출력 - 반복문 사용해보기)

@@ -73,6 +73,9 @@
     Come and take a lookie
     우리 집에만 있지 놀러 와
     얼마든지 굽지 그런데 너 충치 생겨도 난 몰라</samp>
+    <div id="test" style="display: block;">
+    <a href="/ajax-view01">ajax01</a>
+    </div>
 </div>
 <%@include file="./component/footer.jsp"%>
 </body>
