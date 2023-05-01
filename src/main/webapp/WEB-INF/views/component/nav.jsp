@@ -3,7 +3,13 @@
     <ul>
         <li><a href="/memberSave">회원가입</a></li>
         <li><a href="/memberList">목록출력</a></li>
-        <li><a href="/memberMain">실험입니다</a></li>
+        <li>
+            <c:choose>
+                <c:when test="${DTO.memberEmail != null}">
+                    <a href="#" onclick="Detail(${DTO.id})">회원 상세 페이지</a>
+                </c:when>
+            </c:choose>
+        </li>
         <li class="login-name">
             <c:choose>
                 <c:when test="${DTO.memberEmail != null}">
@@ -24,3 +30,8 @@
 <%--        loginArea.innerHTML = "<a href='/mypage' style='color: black;'>"+loginEmail+"님 환영합니다</a>"--%>
 <%--        --%>
 <%--</script>--%>
+<script>
+    const Detail = (id) => {
+        location.href = "/memberDetail?id=" + id;
+    }
+</script>

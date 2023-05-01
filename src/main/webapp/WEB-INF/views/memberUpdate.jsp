@@ -15,9 +15,9 @@
 <%@include file="./component/header.jsp" %>
 <%@include file="./component/nav.jsp" %>
 <div id="section">
-    <form action="/memberUpdate" method="post" onsubmit="return SaveCheck()" id="contents">
+    <form action="/memberUpdate" method="post" id="updateForm">
         <table>
-            <tr  style="display: none">
+            <tr style="display: none">
                 <th><label for="id">아이디:</label></th>
                 <td><input type="text" name="id" id="id" value="${memberList.id}"></td>
             </tr>
@@ -27,7 +27,7 @@
             </tr>
             <tr>
                 <th><label for="password">비밀번호:</label></th>
-                <td><input type="text" name="memberPassword" id="password" value="${memberList.memberPassword}" onblur="passwordCheck()">
+                <td><input type="text" name="memberPassword" id="password" onblur="passwordCheck()">
                     <p id="passwordResult" style="display: block"></p></td>
             </tr>
             <tr>
@@ -51,54 +51,53 @@
         </table>
     </form>
 </div>
-<%@include file="./component/footer.jsp"%>
+<%@include file="./component/footer.jsp" %>
 </body>
 <script>
-    const back = () => {
-        location.href = "/";
-    }
-    const passwordCheck = () =>{
+    const passwordCheck = () => {
         const memberPassword = document.getElementById('password');
         const passwordResult = document.getElementById('passwordResult');
         const exp = /^(?=.*[a-z])(?=.*\d)(?=.*[!#$%])[a-z\d!#$%]{8,16}$/;
 
         if (!(memberPassword.value.match(exp))) {
             passwordResult.innerHTML = "영문소문자, 숫자, 특수문자(!#$%) 하나 이상 입력하고 8~16자"
-            memberPassword.focus();
-            return false;
-        }else{
-            return true;
-        }
-    }
-    const SaveCheck = () => {
-        const memberPassword = document.getElementById('password');
-        const memberName = document.getElementById('name');
-        const memberBirth = document.getElementById('birth');
-        const memberMobile = document.getElementById('mobile');
-        const exp = /^(?=.*[a-z])(?=.*\d)(?=.*[!#$%])[a-z\d!#$%]{8,16}$/;
-        if (memberPassword.value.length==0) {
-            alert("비밀번호를 입력해주세요");
-            memberPassword.focus();
-            return false;
-        }else if(!(memberPassword.value.match(exp))){
-            alert("비밀번호 양식을 확인해주세요")
-            memberPassword.focus();
-            return false;
-        } else if (memberName.value.length == 0) {
-            alert("이름을 입력해주세요");
-            memberName.focus();
-            return false;
-        } else if (memberBirth.value.length == 0) {
-            alert("생일을 입력해주세요");
-            memberBirth.focus();
-            return false;
-        }  else if (memberMobile.value.length == 0) {
-            alert("전화번호를 입력해주세요");
-            memberMobile.focus();
             return false;
         } else {
             return true;
         }
-    }
+    };
+
+    const updateForm = document.getElementById('updateForm');
+    updateForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        let promptResult = prompt("기존 비밀번호 확인", "입력바랍니다");
+        const memberName = document.getElementById('name');
+        const memberBirth = document.getElementById('birth');
+        const memberMobile = document.getElementById('mobile');
+        const memberPassword = document.getElementById('password');
+        const exp = /^(?=.*[a-z])(?=.*\d)(?=.*[!#$%])[a-z\d!#$%]{8,16}$/;
+
+        if (memberPassword.value.length == "") {
+            alert("비밀번호는 필수입니다");
+            memberPassword.focus();
+        } else if(!(memberPassword.value.match(exp))){
+            alert("비밀번호 양식을 확인해주세요");
+            memberPassword.focus();
+        } else if (memberName.value.length == "") {
+            alert("이름은 입력입니다.");
+            memberName.focus();
+        } else if (memberBirth.value.length == "") {
+            alert("생일은 입력입니다.");
+            memberBirth.focus();
+        } else if (memberMobile.value.length == "") {
+            alert("전화번호는 입력입니다.");
+            memberMobile.focus();
+        } else if (promptResult != '${memberList.memberPassword}') {
+            alert("비밀번호가 틀립니다");
+        } else {
+            alert("수정 완료!")
+            updateForm.submit();
+        }
+    });
 </script>
 </html>

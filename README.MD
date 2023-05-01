@@ -18,3 +18,9 @@ select * from member_table;
 
 select * from member_table where memberEmail = 'GUPING@naver.com' and memberPassword = '1234';
 ```
+
+## ICIA -  DAY 49 
+### 회원 수정 (memberUpdate)<br>삭제(memberDelete)
+### 비밀번호 제약조건 : 기존 비밀번호와 일치하면 수정<br>일치하지 않는다면 alert로 비밀번호 불일치 출력
+### nav: 수정 로그인하면 상세페이지 보임
+### CSS 약간 수정
