@@ -24,4 +24,7 @@
     <update id="update" parameterType="member">
         update member_table set memberPassword = #{memberPassword},memberName = #{memberName},memberBirth = #{memberBirth},memberMobile =#{memberMobile} where id = #{id}
     </update>
+    <select id="saveEmail" parameterType="String" resultType="String">
+        select memberEmail from member_table where memberEmail = #{saveEmail}
+    </select>
 </mapper>

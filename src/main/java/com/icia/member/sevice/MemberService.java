@@ -36,4 +36,9 @@ public class MemberService {
     public void memberUpdate(MemberDTO memberDTO) {
         memberRepository.memberUpdate(memberDTO);
     }
+
+    public String emailCheck(String saveEmail) {
+
+        return memberRepository.saveEmail(saveEmail);
+    }
 }

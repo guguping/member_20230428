@@ -11,6 +11,7 @@
 <head>
     <title>memberSave</title>
     <link rel="stylesheet" href="/resources/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
 <body>
 <%@include file="./component/header.jsp" %>
@@ -20,10 +21,8 @@
         <table>
             <tr>
                 <th><label for="email">이메일:</label></th>
-                <td><input type="text" name="memberEmail" id="email"></td>
-            </tr>
-            <tr>
-                <p id="emailResult"></p>
+                <td><input type="text" name="memberEmail" id="email" onblur="emailCheck()">
+                    <p id="emailResult"></p></td>
             </tr>
             <tr>
                 <th><label for="password">비밀번호:</label></th>
@@ -64,8 +63,26 @@
     const back = () => {
         location.href = "/";
     }
-    const loginBack = ()=>{
+    const loginBack = () => {
         location.href = "/memberMain";
+    }
+    const emailCheck = () => {
+        let saveEmail = document.getElementById('email');
+        let emailResult = document.getElementById('emailResult');
+        $.ajax({
+            type: "get",
+            url: "/emailCheck",
+            data: {
+            "saveEmail":saveEmail.value
+            },
+            success: function (res) {
+                console.log("요청성공",res);
+                emailResult.innerHTML = res.value;
+            },
+            error: function () {
+                console.log("요청실패");
+            }
+        });
     }
     const passwordCheck = () => {
         const memberPassword = document.getElementById('password');
@@ -74,7 +91,6 @@
 
         if (!(memberPassword.value.match(exp))) {
             passwordResult.innerHTML = "영문소문자, 숫자, 특수문자(!#$%) 하나 이상 입력하고 8~16자"
-            memberPassword.focus();
             return false;
         } else {
             return true;

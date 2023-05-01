@@ -5,10 +5,7 @@ import com.icia.member.sevice.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -89,6 +86,17 @@ public class MemberController {
     public String memberUpdate(@ModelAttribute MemberDTO memberDTO){
         memberService.memberUpdate(memberDTO);
         return "redirect:/memberDetail?id="+memberDTO.getId();
+    }
+    @GetMapping("/emailCheck")
+    public @ResponseBody String emailCheck(@RequestParam("saveEmail") String saveEmail){
+        System.out.println("saveEmail = " + saveEmail);
+        String dbEmail = memberService.emailCheck(saveEmail);
+        System.out.println("dbEmail = " + dbEmail);
+        if(saveEmail.equals(dbEmail)){
+            return "duplication id";
+        }else {
+            return "good";
+        }
     }
 
 }
