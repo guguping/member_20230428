@@ -29,7 +29,7 @@
             </tr>
             <c:forEach items="${mList}" var="s">
                 <tr>
-                    <td><a href="#" onformdata="post" onclick="detailList(${s.id})">${s.id}</a></td>
+                    <td><a href="#" onformdata="post" style="text-decoration: none; color: black;" onclick="detailList(${s.id})">${s.id}</a></td>
                     <td>${s.memberEmail}</td>
 <%--                    <td>${s.memberPassword}</td>--%>
 <%--                    <td>${s.memberName}</td>--%>
