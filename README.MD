@@ -31,3 +31,23 @@ select * from member_table where memberEmail = 'GUPING@naver.com' and memberPass
 
 (ajax01.jsp , ajaxcontroller , @ResponseBody , 03 버튼 = 파라미터 넘기기 data에 담아 보내야 한다)
 <br>(ajax05 - @ModelAttribute사용 , ajax06 - List출력 - 반복문 사용해보기)
+
+## ICIA - DAY 50
+(@RequestBody , ajax07 - json 넘겨주고 받기 , ajax08 - List로 받은 값 Body에 표로 넣어주기)
+
+요청방식 get - body부분이 없고 header만 있기 때문에
+리퀘스트 바디를 사용할 수 없다
+
+@ResponseBody - 리턴 타입에 맞춰 return 값을 요청한곳에 다시 리턴해준다 
+
+@RequestBody - HTTP의 BODY 부분에 RETURN을 담아 보낸다  
+프론트에서 json타입으로 보내면 리퀘스트 바디로 받을 수 있다
+
+ajax09 에서 사용됨
+ResponseEntity - 스프링에서 제공하는 클래스 / 404 , 500 에러코드등을 ajax에서 핸들링할 수 있다
+
+ajax10 - List를 받아 사용하는 방법
+ResponseEntity - List 넘기기
+
+최근에는 REST API, restful api이 사용되고 body를 주고 body를 받아 넣어주는 방식
+지금까지 사용한 방식은 전통적인 MVC방식
