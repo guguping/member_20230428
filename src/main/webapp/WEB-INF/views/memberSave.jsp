@@ -70,18 +70,24 @@
         let saveEmail = document.getElementById('email');
         let emailResult = document.getElementById('emailResult');
         $.ajax({
-            type: "get",
+            type: "post",
             url: "/emailCheck",
+            async: false,
             data: {
             "saveEmail":saveEmail.value
             },
             success: function (res) {
+                emailResult.style.color = "green";
                 emailResult.innerHTML = res;
+                resResult = true;
             },
             error: function () {
-                console.log("요청실패");
+                emailResult.style.color = "red";
+                emailResult.innerHTML = "중복된 아이디입니다";
+                resResult = false;
             }
         });
+        return resResult;
     }
     const passwordCheck = () => {
         const memberPassword = document.getElementById('password');
@@ -125,6 +131,10 @@
         } else if (memberMobile.value.length == 0) {
             alert("전화번호를 입력해주세요");
             memberMobile.focus();
+            return false;
+        } else if(!(emailCheck())){
+            alert("중복된 이메일");
+            memberEmail.focus();
             return false;
         } else {
             return true;

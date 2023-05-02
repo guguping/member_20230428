@@ -3,6 +3,8 @@ package com.icia.member.controller;
 import com.icia.member.dto.MemberDTO;
 import com.icia.member.sevice.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -96,14 +98,19 @@ public class MemberController {
         return "redirect:/memberDetail?id=" + memberDTO.getId();
     }
 
-    @GetMapping(value = "/emailCheck", produces = "application/text; charset=utf-8")
-    public @ResponseBody String emailCheck(@RequestParam("saveEmail") String saveEmail) {
+    @PostMapping(value = "/emailCheck", produces = "application/text; charset=utf-8")
+    public ResponseEntity emailCheck(@RequestParam("saveEmail") String saveEmail) {
         String dbEmail = memberService.emailCheck(saveEmail);
         if (dbEmail != null) {
-            return "중복 아이디";
-        }else {
-            return "사용 가능";
+            return new ResponseEntity(HttpStatus.CONFLICT);
+        } else {
+            return new ResponseEntity("사용 가능", HttpStatus.OK);
         }
+    }
+    @PostMapping(value = "/detail-ajax")
+    public @ResponseBody MemberDTO detailAjax(@RequestBody MemberDTO memberDTO){
+        MemberDTO detailDTO= memberService.detailList(memberDTO.getId());
+        return detailDTO;
     }
 
 }

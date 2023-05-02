@@ -158,7 +158,7 @@
             type: "post", // key값 (전송방식 등)
             url: "/ajax08", // 주소값
             data: JSON.stringify(member), // js object를 json으로 변환
-            contentType: "application/json", // 서버에게 보내는 데이터 타입을 지정
+                contentType: "application/json", // 서버에게 보내는 데이터 타입을 지정
             success: function (res) { // 요청이 잘 처리된 경우
                 console.log("요청성공", res);
                 const resultArea = document.getElementById('result-area');
