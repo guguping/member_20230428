@@ -58,9 +58,9 @@ public class MemberController {
     }
 
     @GetMapping("/memberDetail")
-    public String memberDetail(@RequestParam("id") Long id, HttpSession session) {
+    public String memberDetail(@RequestParam("id") Long id, Model model) {
         MemberDTO memberDTO = memberService.detailList(id);
-        session.setAttribute("detailList", memberDTO);
+        model.addAttribute("detailList", memberDTO);
         return "memberDetail";
     }
 
@@ -73,6 +73,7 @@ public class MemberController {
     public String logout(HttpSession session) {
 //        세션에 담긴 값 전체 삭제
         session.invalidate();
+
 //        특정 파라미터만 삭제
 //        session.removeAttribute("loginEmail");
         return "redirect:/";
@@ -86,9 +87,9 @@ public class MemberController {
     }
 
     @GetMapping("/memberUpdate")
-    public String memberUpdate(@RequestParam("id") Long id, HttpSession session) {
+    public String memberUpdate(@RequestParam("id") Long id, Model model) {
         MemberDTO memberDTO = memberService.detailList(id);
-        session.setAttribute("memberList", memberDTO);
+        model.addAttribute("memberList", memberDTO);
         return "/memberUpdate";
     }
 
